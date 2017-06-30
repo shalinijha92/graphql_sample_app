@@ -7,9 +7,9 @@ const typeDefinitions = `
         cartList : [Cart],
         cart(_id: String): Cart,
         posts: [Post],
-        post(id: String): Post,
+        post(id: Int!): Post,
         users: [User],
-        user(id: String): User
+        user(id: Int!): User
     }
     
     type Reviewer {
@@ -51,7 +51,7 @@ const typeDefinitions = `
     }
 
     type User {
-        id: String,
+        id: Int!,
         name: String,
         username: String,
         email: String,
@@ -59,7 +59,7 @@ const typeDefinitions = `
     }
 
     type Post {
-        id: String,
+        id: Int!,
         title: String,
         body: String,
         userId: String,
@@ -84,6 +84,12 @@ const typeDefinitions = `
       removeAll (
         _id: String
       ) : Cart
+
+      addPost (
+            title: String,
+            body: String,
+            userId: Int!
+      ) : Post
     }
     schema {
         query: Query,
