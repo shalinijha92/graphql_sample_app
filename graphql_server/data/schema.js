@@ -91,4 +91,4 @@ const typeDefinitions = `
     }
 `;
 
-export default [typeDefinitions];
+export default typeDefinitions;
