@@ -18,7 +18,7 @@ const client = new ApolloClient({
 
 ReactDOM.render(
 <ApolloProvider client={client}>
-    <Router history={history}>
+    <Router>
             <div>
                 <Route path='/gridwall' component={App}/>
                 <Route path='/cart' component={CartComponent}/>
