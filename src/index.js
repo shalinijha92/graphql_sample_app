@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ApolloClient, createNetworkInterface, ApolloProvider } from 'react-apollo';
 import createBrowserHistory from 'history/createBrowserHistory';
 
-import './App.css';
+import './Components/App/App.css';
 import './index.css';
-import App from './App';
-import CartComponent from './Cart';
+import App from './Components/App/App';
+import CartComponent from './Components/Cart/Cart';
 import registerServiceWorker from './registerServiceWorker';
 
 const history = createBrowserHistory();

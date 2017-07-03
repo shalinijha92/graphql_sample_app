@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { graphql } from 'react-apollo';
-import {RemoveFromCart} from './mutations/cart';
-import {Cart} from './queries/cart';
+import {RemoveFromCart} from './../../mutations/cart';
+import {Cart} from './../../queries/cart';
 
 class CartComponent extends Component {
     constructor(props) {
