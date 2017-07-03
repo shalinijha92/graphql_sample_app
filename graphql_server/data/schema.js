@@ -40,6 +40,7 @@ const typeDefinitions = `
         discountPrice: String,
         description: String,
         reviewers : [String],
+        reviewersInfo: [Reviewer]
     }
 
     type Comment {

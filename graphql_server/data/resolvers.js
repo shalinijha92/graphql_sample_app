@@ -39,6 +39,11 @@ const resolvers = {
           return (await Reviewers.find({_id: {$in: reviewers}}));
         }
       },
+      Cart: {
+        reviewersInfo : async ({reviewers}) => {
+          return (await Reviewers.find({_id: {$in: reviewers}}));
+        }
+      },
       Post: {
         commments: async ({id}) => {
           return (await fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`).then(res => res.json()))

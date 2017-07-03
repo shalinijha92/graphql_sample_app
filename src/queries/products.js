@@ -19,6 +19,10 @@ export const Products = gql`
         price
         discountPrice
         description
-        reviewers
+        reviewersInfo {
+            firstName
+            lastName
+            email
+        }
     }
 }`

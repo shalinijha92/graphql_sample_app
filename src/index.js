@@ -7,7 +7,7 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import './Components/App/App.css';
 import './index.css';
 import App from './Components/App/App';
-import CartComponent from './Components/Cart/Cart';
+import CartContainer from './Components/Cart/CartContainer';
 import registerServiceWorker from './registerServiceWorker';
 
 const history = createBrowserHistory();
@@ -21,7 +21,7 @@ ReactDOM.render(
     <Router>
             <div>
                 <Route path='/gridwall' component={App}/>
-                <Route path='/cart' component={CartComponent}/>
+                <Route path='/cart' component={CartContainer}/>
             </div>
         </Router>
 </ApolloProvider>, document.getElementById('root'));

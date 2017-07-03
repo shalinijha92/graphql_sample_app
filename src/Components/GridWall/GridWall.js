@@ -14,7 +14,11 @@ class GridWall extends Component {
 			let product = <ProductTileContainer item={obj}  key={index}/>
 			productTile.push(product);
 		}.bind(this));
-        return <div>{productTile}</div>;
+        return (<div className="container">
+                    <div className="flex-row row">
+                        {productTile}
+                    </div>
+        </div>);
     }
 
     render () {
