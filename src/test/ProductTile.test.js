@@ -2,7 +2,7 @@ import { mount } from 'enzyme';
 import React from 'react';
 import { ApolloClient, createNetworkInterface, ApolloProvider } from 'react-apollo';
 
-import ProductTile from './ProductTile';
+import ProductTile from './../components/ProductTile/ProductTile';
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({ uri: 'http://localhost:8080/graphql' }),
@@ -12,7 +12,7 @@ describe('<ProductTile />', () => {
             "_id": "594a418220ac521cd853efda",
             "name": "iPhone 5s",
             "brand": "Apple",
-            "imageUrl": "http://lorempixel.com/200/400/technics/",
+            "imageUrl": "iphone5s.jpeg",
             "price": "$150.00",
             "discountPrice": "$75.99",
             "description": "awesomatic of the aromalematic",

@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ApolloClient, createNetworkInterface, ApolloProvider } from 'react-apollo';
 import createBrowserHistory from 'history/createBrowserHistory';
 
-import './Components/App/App.css';
+import './components/App/App.css';
 import './index.css';
-import App from './Components/App/App';
-import HeaderContainer from './Components/Header/HeaderContainer';
-import CartContainer from './Components/Cart/CartContainer';
+import App from './components/App/App';
+import HeaderContainer from './components/Header/HeaderContainer';
+import CartContainer from './components/Cart/CartContainer';
 import registerServiceWorker from './registerServiceWorker';
 
 const history = createBrowserHistory();

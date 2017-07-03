@@ -2,8 +2,8 @@ import { mount } from 'enzyme';
 import React from 'react';
 import { ApolloClient, createNetworkInterface, ApolloProvider } from 'react-apollo';
 
-import GridWall from './GridWall';
-import ProductTileContainer from './../ProductTile/ProductTileContainer'
+import GridWall from './../components/GridWall/GridWall';
+import ProductTileContainer from './../components/ProductTile/ProductTileContainer'
 
 
 // jest.dontMock('./GridWall');
@@ -17,7 +17,7 @@ describe('<GridWall />', () => {
             "_id": "594a418220ac521cd853efda",
             "name": "iPhone 5s",
             "brand": "Apple",
-            "imageUrl": "http://lorempixel.com/200/400/technics/",
+            "imageUrl": "iphone6s.jpeg",
             "price": "$150.00",
             "discountPrice": "$75.99",
             "description": "awesomatic of the aromalematic",
@@ -30,7 +30,7 @@ describe('<GridWall />', () => {
             "_id": "594a41a927624d17809cd51a",
             "name": "iPhone 5",
             "brand": "Apple",
-            "imageUrl": "http://lorempixel.com/200/400/technics/",
+            "imageUrl": "iphone5s.jpeg",
             "price": "$120.00",
             "discountPrice": null,
             "description": "awesomatic of the aromalematic",
@@ -70,7 +70,7 @@ describe('<GridWall />', () => {
             "_id": "594a418220ac521cd853efda",
             "name": "iPhone 5s",
             "brand": "Apple",
-            "imageUrl": "http://lorempixel.com/200/400/technics/",
+            "imageUrl": "iphone5s.jpeg",
             "price": "$150.00",
             "discountPrice": "$75.99",
             "description": "awesomatic of the aromalematic",
