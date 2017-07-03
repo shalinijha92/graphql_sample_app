@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { graphql } from 'react-apollo';
+import './Cart.css'
 
 
 class CartComponent extends Component {
@@ -15,14 +15,15 @@ class CartComponent extends Component {
        
         this.props.cartList.map((item, index) => {
             const url = require(`../../images/${item.imageUrl}`);
-            let cartItem = <div className="card mb-3 cart-item" key={index}>
-                <img className="card-img-top" src={url} alt="Card image cap" height="200" width="200"/>
-                <div className="card-block">
+            let cartItem = <div className="cart-item" key={index}>
+                <img className="cart-img" src={url} alt="Card image cap" height="200" width="200"/>
+                <div className="cart-block">
                     <h4 className="card-title">NAME:{item.name}</h4>
                     <p className="card-text">{item.description}</p>
-                    <button className="btn btn-primary" onClick={() => this.props.removeItemFromCart(item._id)}>Remove
+                    <button className="btn btn-primary" onClick={() => this.props.removeFromCart(item._id)}>Remove
                     </button>
                 </div>
+                
             </div>
             cartList.push(cartItem);
         });

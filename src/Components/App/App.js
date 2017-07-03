@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Link className="header-link" to={`/cart`}>Go To Cart</Link>
+        {/*<Link className="header-link" to={`/cart`}>Go To Cart</Link>*/}
         <GridWallContainer />
       </div>
     );
