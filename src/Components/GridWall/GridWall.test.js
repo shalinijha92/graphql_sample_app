@@ -1,12 +1,20 @@
 import { shallow, mount, render } from 'enzyme';
 import React from 'react';
+import { ApolloClient, createNetworkInterface, ApolloProvider } from 'react-apollo';
+
 import GridWall from './GridWall';
-import ProductTile from './../ProductTile/ProductTile';
+import ProductTileContainer from './../ProductTile/ProductTileContainer'
+
+
+// jest.dontMock('./GridWall');
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface({ uri: 'http://localhost:8080/graphql' }),
+});
 
 describe('<GridWall />', () => {
 
     it('should render <ProductTile /> component', () => {
-        const productItem = [
+        const productList = [
             {
                 "_id": "594a418220ac521cd853efda",
                 "name": "iPhone 5s",
@@ -20,9 +28,12 @@ describe('<GridWall />', () => {
                 "594a1fe2addae23e9466596a"
                 ]
             }];
-        const wrapper = shallow( <GridWall productList={productItem}/>);
-        const props = wrapper.props();
-        console.log(props);
-        expect(wrapper.prop('productList')).to.equal(productItem);
+        const wrapper = mount(
+            <ApolloProvider client= {client} >
+                <GridWall productList={productList}/>
+            </ApolloProvider>
+        );
+        expect(wrapper.find(ProductTileContainer).length).toBe(1);
+        expect(wrapper.find(GridWall).props().productList).toEqual(productList);
     } )
 })

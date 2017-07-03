@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { graphql } from 'react-apollo';
 
-import './ProductTile.css';
+// import './ProductTile.css';
 
 
 class ProductTile extends Component {

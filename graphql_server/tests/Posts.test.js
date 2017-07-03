@@ -32,7 +32,6 @@ describe('JSON Placeholder APIS', () => {
         const result = await graphql(schema, query);
 
         const {data} = result;
-        console.log(result);
         expect(data).toBeDefined();
     })
 
