@@ -2,22 +2,13 @@ import React, {Component} from 'react';
 import { graphql } from 'react-apollo';
 
 import './ProductTile.css';
-import {AddToCart} from './../../mutations/cart';
-import {Cart} from './../../queries/cart'
+
 
 class ProductTile extends Component {
 	constructor (props) {
 		super(props);
-        this.addToCart = this.addToCart.bind(this)
-	}
 
-    addToCart (item) {
-        console.log(this.props)
-        this.props.mutate({ variables: item})
-        .then((resp) => {
-            console.log(resp)
-        })
-    }
+	}
 
 	render() {
 		return(
@@ -31,7 +22,7 @@ class ProductTile extends Component {
 					}
 					
 				</div>
-				<button className="btn btn-primary" onClick={() => this.addToCart(this.props.item)}> 
+				<button className="btn btn-primary" onClick={() => this.props.handleAddToCart(this.props.item)}> 
 					{
 						false?`Added`:`Add to Cart`
 					}
@@ -40,4 +31,4 @@ class ProductTile extends Component {
 		);
 	}
 }
-export default graphql(AddToCart)(ProductTile);
+export default ProductTile;
