@@ -22,8 +22,8 @@ ReactDOM.render(
     <Router>
             <div>
                 <HeaderContainer />
-                <Route path='/gridwall' component={App}/>
-                <Route path='/cart' component={CartContainer}/>
+                <Route path='/' exact='true' component={App}/>
+                <Route path='/cart' exact='true' component={CartContainer}/>
             </div>
         </Router>
 </ApolloProvider>, document.getElementById('root'));

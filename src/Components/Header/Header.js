@@ -19,7 +19,7 @@ class Header extends Component {
         <div className="App-header"> 
             <ul className="header-bar">
               <li className="header-item">
-                <Link to="/gridwall" className="header-link">GridWall</Link>
+                <Link to="/" className="header-link">GridWall</Link>
               </li>
               <li className=" cart-info">
                 <Link className="header-link" to={`/cart`}>Go to Cart</Link>
