@@ -18,16 +18,13 @@ class CartContainer extends Component {
         
     }
     removeItemFromCart (_id) {
-        console.log(_id)
         this.props.mutate({variables: {_id}})
         .then((resp) => {
-            console.log('Hello!')
             this.props.data.refetch()
         })
     }
 
     render() {
-        console.log(this.props.data)
         return(
             this.props.data.loading?<div>Loading!</div>:<CartComponent cartList={this.props.data.cartList} removeFromCart={this.removeItemFromCart}/>
         );

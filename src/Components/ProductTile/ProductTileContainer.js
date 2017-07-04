@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { graphql } from 'react-apollo';
 
 import {AddToCart} from './../../mutations/cart';
-import {Cart} from './../../queries/cart'
 import ProductTile from './ProductTile';
 
 class ProductTileContainer extends Component {
@@ -12,7 +11,6 @@ class ProductTileContainer extends Component {
     }
 
     addToCart (item) {
-        console.log(this.props)
         this.props.mutate({ variables: item})
         .then((resp) => {
             console.log(resp)

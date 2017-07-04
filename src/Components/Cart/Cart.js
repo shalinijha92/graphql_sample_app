@@ -29,8 +29,8 @@ class CartComponent extends Component {
         });
         return this.props.cartList.length?<div>{cartList}</div>: <div>Nothing to see here!</div>;   
     }
+
     render () {
-        console.log(this.props)
         return (
             this.renderCartItem()
         );

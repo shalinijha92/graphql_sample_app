@@ -5,7 +5,6 @@ class GridWall extends Component {
 
     constructor (props) {
         super (props);
-        this.renderProductTile = this.renderProductTile.bind(this);
     }
     
     renderProductTile() {

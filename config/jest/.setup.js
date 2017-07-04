@@ -1,4 +1,5 @@
 const jsdom = require('jsdom').jsdom;
+require("babel-polyfill");
 
 global.document = jsdom('');
 global.window = document.defaultView;

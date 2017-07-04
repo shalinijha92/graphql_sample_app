@@ -1,5 +1,6 @@
 import Mongoose from 'mongoose';
-
+//mongodb://sjha11:sh@lu1992@ds145292.mlab.com:45292/shoppingcart
+//'mongodb://localhost:27017/shoppingcart'
 const mongo = Mongoose.connect('mongodb://localhost:27017/shoppingcart', (err) => {
   if(err){
     console.error('Could not connect to MongoDB on port 27017');

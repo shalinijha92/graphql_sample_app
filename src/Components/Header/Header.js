@@ -1,19 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import './Header.css';
 
-class Header extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  componentWillMount (){
-        // this.props.fetchCartCount();
-  }
-
-  render() {
-    return (
+const Header = () => {
+  return (
 
       <div className="App">
         <div className="App-header"> 
@@ -28,7 +18,6 @@ class Header extends Component {
         </div>
       </div>
     );
-  }
 }
 
 export default Header;
