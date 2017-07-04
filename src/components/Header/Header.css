@@ -1,0 +1,39 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  padding: 20px;
+  color: white;
+}
+
+.header-bar {
+  list-style-type: none;
+  margin: 0;
+  height: 30px;
+}
+
+.header-bar .header-item {
+  padding: 0 20px;
+  border-right: 1px solid white;
+  float: left;
+}
+
+.header-item .header-link,
+.cart-info .header-link {
+  color: white;
+  text-decoration: none;
+}
+
+.header-bar .cart-info {
+  padding: 0 20px;
+  float: right;
+
+}
+
