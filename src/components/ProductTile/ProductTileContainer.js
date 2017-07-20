@@ -1,27 +1,25 @@
-import React, {Component} from 'react';
-import { graphql } from 'react-apollo';
+import { connect } from 'react-redux';
+import { graphql , compose} from 'react-apollo';
 
+import {addToCart} from './../../actions';
 import {AddToCart} from './../../mutations/cart';
 import ProductTile from './ProductTile';
 
-class ProductTileContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.addToCart = this.addToCart.bind(this)
+const mapStateToProps = (state) => {
+    return {
+        cartCount: state.cartCount
     }
-
-    addToCart (item) {
-        this.props.mutate({ variables: item})
-        .then((resp) => {
-            console.log(resp)
-        })
-    }
-
-    render() {
-        return(
-            <ProductTile item={this.props.item} handleAddToCart={this.addToCart}/>
-        );
-    } 
 }
 
-export default graphql(AddToCart)(ProductTileContainer);
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        updateCartCount: (cartCount) => {
+            dispatch(addToCart(cartCount))
+        }
+    }
+}
+
+export default compose(
+    graphql(AddToCart),
+    connect(mapStateToProps, mapDispatchToProps)
+)(ProductTile);

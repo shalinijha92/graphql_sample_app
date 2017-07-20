@@ -6,9 +6,19 @@ import './ProductTile.css';
 class ProductTile extends Component {
 	constructor (props) {
 		super(props);
-		this.imgUrl = "s6.jpeg"
+		this.addToCart = this.addToCart.bind(this);
+
 
 	}
+
+	addToCart (item) {
+        this.props.mutate({ variables: this.props.item})
+        .then((resp) => {
+			const currentCount = (this.props.cartCount)+1;
+            this.props.updateCartCount(currentCount);
+        })
+    }
+
 
 	render() {
 		const url = require(`../../images/${this.props.item.imageUrl}`);
@@ -23,7 +33,7 @@ class ProductTile extends Component {
 					}
 					
 				</div>
-				<button className="btn btn-primary" onClick={() => this.props.handleAddToCart(this.props.item)}> 
+				<button className="btn btn-primary" onClick={this.addToCart}> 
 					{
 						false?`Added`:`Add to Cart`
 					}

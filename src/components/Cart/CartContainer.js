@@ -1,36 +1,28 @@
-import React, {Component} from 'react';
-import { graphql } from 'react-apollo';
+import { connect } from 'react-redux';
+import { graphql , compose} from 'react-apollo';
+
+import { removeFromCart } from './../../actions';
 
 import {RemoveFromCart} from './../../mutations/cart';
 import {Cart} from './../../queries/cart';
 import CartComponent from './Cart';
 
-class CartContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.removeItemFromCart = this.removeItemFromCart.bind(this)
+const mapStateToProps = (state) => {
+    return {
+        cartCount: state.cartCount
     }
-
-    componentDidMount (){
-        setTimeout(() => {
-            this.props.data.refetch();
-        }, 10)
-        
-    }
-    removeItemFromCart (_id) {
-        this.props.mutate({variables: {_id}})
-        .then((resp) => {
-            this.props.data.refetch()
-        })
-    }
-
-    render() {
-        return(
-            this.props.data.loading?<div>Loading!</div>:<CartComponent cartList={this.props.data.cartList} removeFromCart={this.removeItemFromCart}/>
-        );
-    } 
 }
 
-export default graphql(RemoveFromCart)(
-    graphql(Cart)(CartContainer)
-);
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        updateCartCount: (cartCount) => {
+            dispatch(removeFromCart(cartCount))
+        }
+    }
+}
+
+export default compose(
+    graphql(RemoveFromCart),
+    graphql(Cart),
+    connect(mapStateToProps, mapDispatchToProps)
+)(CartComponent);

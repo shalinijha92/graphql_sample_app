@@ -91,10 +91,19 @@ const typeDefinitions = `
             body: String,
             userId: Int!
       ) : Post
+      updatePost (
+            title: String,
+            body: String,
+            id: Int!
+      ) : Post
+    }
+    type Subscription {
+        productAdded : Cart
     }
     schema {
         query: Query,
-        mutation: Mutation
+        mutation: Mutation,
+        subscription: Subscription
     }
 `;
 

@@ -1,5 +1,7 @@
 import { Products, Reviewers, Cart } from './connectors';
 import fetch from 'node-fetch';
+import { PubSub, withFilter } from 'graphql-subscriptions';
+const pubsub = new PubSub();
 
 const resolvers = {
       Query: {
@@ -25,6 +27,7 @@ const resolvers = {
           return (await fetch(`https://jsonplaceholder.typicode.com/posts`).then(res => res.json()));
         },
         post : async (root, id) => {
+          console.log(id)
           return (await fetch(`https://jsonplaceholder.typicode.com/posts/${id.id}`).then(res => res.json()));
         },
         users : async () => {
@@ -55,11 +58,12 @@ const resolvers = {
       Mutation : {
         addToCart : async (root, args, context, info) => {
           const data = new Cart(args)
-          data.save()
-          return (await Cart.find({}));
+          return (await data.save().then((resp) => {
+            pubsub.publish('productAdded', { productAdded: resp._id });
+            return resp;
+          }))
         },
         removeFromCart : async (root, args) => {
-          console.log(args)
           return (await Cart.findByIdAndRemove(args._id).exec());
         },
         removeAll : async (root, args) => {
@@ -68,7 +72,29 @@ const resolvers = {
         addPost : async (root, args) => {
           const payload = {data: args}
           return (await fetch('http://jsonplaceholder.typicode.com/posts', { method: 'POST', body: payload }).then(res => res.json()))
+        },
+        updatePost : async (root, args) => {
+          const payload = {data: args}
+          return (await fetch(`http://jsonplaceholder.typicode.com/posts/${args.id}`, { method: 'PUT', body: payload }).then(res => res.json()))
         }
+      },
+      Subscription: {
+        productAdded: {
+          subscribe: () => withFilter(
+            () => pubsub.asyncIterator('productAdded'),
+            (payload, variables) => {
+              console.log(payload);
+              return payload.channelId === variables.channelId;
+            }
+          ),
+          
+          resolve: (payload) => {
+            console.log(payload)
+            return {
+              customData: payload,
+            };
+          },
+        },
       }
       
     }
