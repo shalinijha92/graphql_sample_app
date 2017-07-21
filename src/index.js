@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ApolloClient, createNetworkInterface, ApolloProvider } from 'react-apollo';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
+import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
 
 import './components/App/App.css';
 import './index.css';
@@ -13,8 +14,23 @@ import {cartCount} from './reducers';
 
 import registerServiceWorker from './registerServiceWorker';
 
+const wsClient = new SubscriptionClient(`ws://localhost:8080/`, {
+  reconnect: true
+});
+
+// Create a normal network interface:
+const networkInterface = createNetworkInterface({
+  uri: 'http://localhost:8080/graphql'
+});
+// Extend the network interface with the WebSocket
+const networkInterfaceWithSubscriptions = addGraphQLSubscriptions({
+  networkInterface,
+  wsClient
+});
+
+// Finally, create your ApolloClient instance with the modified network interface
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface({ uri: 'http://localhost:8080/graphql' }),
+  networkInterface: networkInterfaceWithSubscriptions
 });
 
 const appData = combineReducers({

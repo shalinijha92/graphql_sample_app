@@ -59,7 +59,7 @@ const resolvers = {
         addToCart : async (root, args, context, info) => {
           const data = new Cart(args)
           return (await data.save().then((resp) => {
-            pubsub.publish('productAdded', { productAdded: resp._id });
+            pubsub.publish('productAdded', { productAdded: resp });
             return resp;
           }))
         },
@@ -80,20 +80,7 @@ const resolvers = {
       },
       Subscription: {
         productAdded: {
-          subscribe: () => withFilter(
-            () => pubsub.asyncIterator('productAdded'),
-            (payload, variables) => {
-              console.log(payload);
-              return payload.channelId === variables.channelId;
-            }
-          ),
-          
-          resolve: (payload) => {
-            console.log(payload)
-            return {
-              customData: payload,
-            };
-          },
+          subscribe: () => pubsub.asyncIterator('productAdded'),
         },
       }
       

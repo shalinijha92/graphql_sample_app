@@ -1,90 +1,45 @@
-// import express from 'express';
-// import { apolloServer } from 'graphql-tools';
-// import { SubscriptionServer } from 'subscriptions-transport-ws';
-// import { execute, subscribe } from 'graphql';
-// import {
-//   graphqlExpress,
-//   graphiqlExpress,
-// } from 'graphql-server-express';
-// import bodyParser from 'body-parser';
-// import { createServer } from 'http';
-// import Cors from 'cors';
-// import schema from './schema';
 
-
-// const GRAPHQL_PORT = 4000;
-
-// var graphQLServer = express();
-// graphQLServer.use(Cors());
-
-// graphQLServer.use('/graphql', bodyParser.json(), graphqlExpress({
-//   schema
-// }));
-
-// const subscriptionServer = SubscriptionServer.create(
-//   {
-//     schema,
-//     execute,
-//     subscribe,
-//   },
-//   {
-//     server: graphQLServer,
-//     path: '/subscriptions',
-//   },
-// );
-// graphQLServer.use('/graphiql', graphiqlExpress({
-//   endpointURL: '/graphql',
-//   subscriptionsEndpoint: `ws://localhost:${GRAPHQL_PORT}/subscriptions`
-// }));
-
-// const ws = createServer(graphQLServer);
-// ws.listen(GRAPHQL_PORT, () => {
-//   console.log(`GraphQL Server is now running on http://localhost:${GRAPHQL_PORT}`);
-//   subscriptionServer
-// });
-
-// Update version of apollo-server-express
-import Cors from 'cors';
 import express from 'express';
+import {
+  graphqlExpress,
+  graphiqlExpress,
+} from 'graphql-server-express';
 import bodyParser from 'body-parser';
-import { makeExecutableSchema } from 'graphql-tools';
-import { graphqlExpress,graphiqlExpress } from 'apollo-server-express';
-import { SubscriptionServer } from 'subscriptions-transport-ws';
+import cors from 'cors';
+
+import  schema  from './schema';
+
 import { execute, subscribe } from 'graphql';
+import { createServer } from 'http';
+import { SubscriptionServer } from 'subscriptions-transport-ws';
 
-import Schema from './data/schema';
-import resolvers from './data/resolvers';
-import schema from './src/schema'
+const PORT = 8080;
+const server = express();
 
-const GRAPHQL_PORT = 8080;
-var graphQLServer = express();
-const executableSchema = makeExecutableSchema({
-  typeDefs:Schema,
-  resolvers,
-});
+server.use('*', cors({ origin: 'http://localhost:3000' }));
 
-const subscriptionServer = SubscriptionServer.create(
-  {
-    schema,
-    execute,
-    subscribe,
-  },
-  {
-    server: graphQLServer,
-    path: '/subscriptions',
-  },
-);
-graphQLServer.use(Cors());
-graphQLServer.use('/graphql',bodyParser.json(), graphqlExpress({
+server.use('/graphql', bodyParser.json(), graphqlExpress({
   schema
 }));
 
-graphQLServer.use('/graphiql', graphiqlExpress({
+server.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
-  subscriptionsEndpoint: `ws://localhost:${GRAPHQL_PORT}/subscriptions`
+  subscriptionsEndpoint: `ws://localhost:8080/subscriptions`
 }));
 
+// We wrap the express server so that we can attach the WebSocket for subscriptions
+const ws = createServer(server);
 
-graphQLServer.listen(GRAPHQL_PORT, () => console.log(
-  `GraphQL Server is now running on http://localhost:${GRAPHQL_PORT}/graphql`
-), subscriptionServer);
+ws.listen(PORT, () => {
+  console.log(`GraphQL Server is now running on http://localhost:${PORT}`);
+
+  // Set up the WebSocket for handling GraphQL subscriptions
+  new SubscriptionServer({
+    execute,
+    subscribe,
+    schema
+  }, {
+    server: ws,
+    path: '/subscriptions',
+  });
+});
