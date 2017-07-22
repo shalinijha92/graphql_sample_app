@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { ApolloClient, createNetworkInterface, ApolloProvider } from 'react-apollo';
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import {  ApolloProvider } from 'react-apollo';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
 
@@ -14,7 +15,7 @@ import {cartCount} from './reducers';
 
 import registerServiceWorker from './registerServiceWorker';
 
-const wsClient = new SubscriptionClient(`ws://localhost:8080/`, {
+const wsClient = new SubscriptionClient(`ws://localhost:8080/subscriptions`, {
   reconnect: true
 });
 
