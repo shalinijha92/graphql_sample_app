@@ -1,0 +1,68 @@
+{
+	"gwData": [{
+			"_id": "595a6183c9ff35926e8668a4",
+			"name": "s6",
+			"brand": "Samsung",
+			"imageUrl": "s6.jpeg",
+			"price": "$350.00",
+			"discountPrice": "$275.99",
+			"description": "s6 description",
+			"reviewers": [
+				"594a216d7dcd0b0d7cc857ca",
+				"594a1ffaaddae23e9466596b"
+			]
+		},
+		{
+			"_id": "595a619ac9ff35926e8668a5",
+			"name": "G5",
+			"brand": "Motorola",
+			"imageUrl": "g5.jpeg",
+			"price": "$150.00",
+			"discountPrice": "$75.99",
+			"description": "Moto G5",
+			"reviewers": [
+				"594a1d4faddae23e94665968",
+				"594a201caddae23e9466596c"
+			]
+		},
+		{
+			"_id": "595a61aec9ff35926e8668a6",
+			"name": "Pixel XL",
+			"brand": "Google",
+			"imageUrl": "pixel.jpeg",
+			"price": "$150.00",
+			"discountPrice": "$75.99",
+			"description": "Google Pixel XL",
+			"reviewers": [
+				"594a1ffaaddae23e9466596b"
+			]
+		},
+		{
+			"_id": "595a6372c9ff35926e8668a7",
+			"name": "iPhone 7",
+			"brand": "Apple",
+			"imageUrl": "iphone7.jpeg",
+			"price": "$250.00",
+			"discountPrice": null,
+			"description": "iPhone 7 description",
+			"reviewers": [
+				"594a1fe2addae23e9466596a",
+				"594a1fc6addae23e94665969",
+				"594a1ffaaddae23e9466596b"
+			]
+		},
+		{
+			"_id": "595a65f8c9ff35926e8668a8",
+			"name": "iPhone 5",
+			"brand": "Apple",
+			"imageUrl": "iphone6s.jpeg",
+			"price": "$120.00",
+			"discountPrice": null,
+			"description": "iPhone 5 description",
+			"reviewers": [
+				"594a1d4faddae23e94665968",
+				"594a1fc6addae23e94665969"
+			]
+		}
+	]
+}

@@ -1,9 +1,30 @@
-Steps to run locally:
+# graphql-tutorial / Hermes
+Full-stack GraphQL tutorials with React, Redux and Apollo
 
-1. Clone the repository
-2. Run npm install and npm start
-3. The graphql server resides in the same repo. Move inside graphql_server directory and run npm install and npm run which will start a graphql server
-4. A mongodump is provided in the repo, run a mongo restore to get the data
-mongorestore --db shoppingcart <dump path >
-5. visit http://localhost:3000/gridwall to see the app
-6. To run the test cases go to the root directory and run jest from termiinal
+1. Build a simple React app with GraphQL and Apollo
+2. Build a simple GraphQL server in 15 mins
+3. Adding mutations to your React/GraphQL app
+
+More ideas for later (building on each other)...
+
+... client:
+- Advanced: updating the GraphQL store after mutations
+- mutations and optimistic UI
+- Pagination
+- Developer tools for GraphQL
+- A quick tour of GraphiQL
+
+
+... server:
+- connecting to a REST backend
+- connecting to a Mongo backend
+- connecting to a SQL backend
+- advanced: structuring your GraphQL server
+- modularizing your GraphQL schema
+
+... full-stack
+- CRUD mutations in GraphQL: create
+- CRUD mutations in GraphQL: update
+- CRUD mutations in GraphQL: delete
+
+
