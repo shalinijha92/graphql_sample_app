@@ -19,7 +19,8 @@ const server = express();
 server.use('*', cors());
 
 server.use('/graphql', bodyParser.json(), graphqlExpress({
-  schema
+  schema,
+  context: { hello: "world!" }
 }));
 
 server.use('/graphiql', graphiqlExpress({
