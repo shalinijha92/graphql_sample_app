@@ -21,10 +21,15 @@ class CartComponent extends Component {
         this.props.data.subscribeToMore({
             document: productAdded,
             updateQuery: (prev, {subscriptionData}) => {
+                console.log("Hello ladies", prev.cartList)
                 if (!subscriptionData.data) {
                     return prev;
                 }else {
-                    return subscriptionData.data.productAdded;
+                    let newCartList = [...prev.cartList];
+                    newCartList.push(subscriptionData.data.productAdded)
+                    return Object.assign({}, prev, {
+                        cartList: Object.assign(newCartList, prev.cartList)
+                    });
                 }
             }
         })
