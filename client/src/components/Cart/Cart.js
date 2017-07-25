@@ -27,6 +27,7 @@ class CartComponent extends Component {
                 }else {
                     let newCartList = [...prev.cartList];
                     newCartList.push(subscriptionData.data.productAdded)
+                    this.props.updateCartCount(newCartList.length);
                     return Object.assign({}, prev, {
                         cartList: Object.assign(newCartList, prev.cartList)
                     });
