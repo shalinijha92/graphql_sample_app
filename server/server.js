@@ -20,7 +20,6 @@ server.use('*', cors());
 
 server.use('/graphql', bodyParser.json(), graphqlExpress({
   schema,
-  context: { hello: "world!" }
 }));
 
 server.use('/graphiql', graphiqlExpress({

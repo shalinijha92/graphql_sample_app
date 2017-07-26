@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { graphql , compose} from 'react-apollo';
 
-import { updateDefaultCart } from './../../actions';
+import { updateDefaultCart, removeFromCart } from './../../actions';
 
 import {RemoveFromCart} from './../../mutations/cart';
 import {Cart} from './../../queries/cart';
@@ -17,6 +17,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         updateCartCount: (cartCount) => {
             dispatch(updateDefaultCart(cartCount))
+        },
+        removeFromCart: (cartCount) => {
+            dispatch(removeFromCart(cartCount))
         }
     }
 }

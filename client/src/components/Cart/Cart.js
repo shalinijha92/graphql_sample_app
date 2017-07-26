@@ -21,7 +21,6 @@ class CartComponent extends Component {
         this.props.data.subscribeToMore({
             document: productAdded,
             updateQuery: (prev, {subscriptionData}) => {
-                console.log("Hello ladies", prev.cartList)
                 if (!subscriptionData.data) {
                     return prev;
                 }else {
@@ -41,13 +40,12 @@ class CartComponent extends Component {
         this.props.mutate({variables: {_id}})
         .then((resp) => {
             this.props.data.refetch()
-            this.props.updateCartCount()
+            this.props.removeFromCart()
         })
     }
 
     renderCartItem () {
         let cartList = [];
-       
         this.props.data.cartList.map((item, index) => {
             const url = require(`../../images/${item.imageUrl}`);
             let cartItem = <div className="cart-item" key={index}>
@@ -66,7 +64,6 @@ class CartComponent extends Component {
     }
 
     render () {
-        console.log('In render')
         return (
             this.props.data.loading?<div>Loading!</div>:this.renderCartItem()
         );

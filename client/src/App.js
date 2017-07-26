@@ -24,11 +24,6 @@ import productList from './resources/products.json';
 import CartContainer from './components/Cart/CartContainer';
 
 const networkInterface = createNetworkInterface({ uri: 'http://localhost:4000/graphql' });
-networkInterface.use([{
-  applyMiddleware(req, next) {
-    setTimeout(next, 500);
-  },
-}]);
 
 const wsClient = new SubscriptionClient(`ws://localhost:4000/subscriptions`, {
   reconnect: true
@@ -38,15 +33,6 @@ const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
   networkInterface,
   wsClient
 );
-
-function dataIdFromObject(result) {
-  if (result.__typename) {
-    if (result.id !== undefined) {
-      return `${result.__typename}:${result.id}`;
-    }
-  }
-  return null;
-}
 
 const client = new ApolloClient({
   networkInterface: networkInterfaceWithSubscriptions,
